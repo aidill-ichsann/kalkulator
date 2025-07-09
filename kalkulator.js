@@ -31,6 +31,8 @@ tombol.forEach((klik) => {
           hasil = Number(angkaPertama) * Number(angkaKedua);
         } else if (operator == "/") {
           hasil = Number(angkaPertama) / Number(angkaKedua);
+        }else if(operator == '%'){
+          hasil = Number(angkaPertama) % Number(angkaKedua);
         }
         jumlah.textContent = hasil;
         jumlah.style.display = "flex";
@@ -41,7 +43,7 @@ tombol.forEach((klik) => {
         layar.classList.remove("lyr");
       }
       return;
-    } else if (text === "+" || text === "-" || text === "x" || text === "/") {
+    } else if (text === "+" || text === "-" || text === "x" || text === "/" || text === '%') {
       // jika klik operator
       operator = text;
       layar.textContent += text;
@@ -60,8 +62,11 @@ tombol.forEach((klik) => {
       angkaKedua = "";
       angkaPertama = "";
       hasil = "";
+      jumlah.style.display = 'none'
+      jumlah.textContent = ''
       operator = "";
       layar.textContent = "";
+      layar.classList.remove('lyr')
       return;
     } else if (text === '.'){
       layar.textContent += text
@@ -99,6 +104,13 @@ tombol.forEach((klik) => {
         jumlah.textContent = hasil;
         return hasil;
       } else if (operator === "/") {
+        layar.textContent += text;
+        hasil = Number(angkaPertama) / Number(angkaKedua);
+        layar.classList.add("lyr");
+        jumlah.style.display = "flex";
+        jumlah.textContent = hasil;
+        return hasil;
+      }else if (operator === "%") {
         layar.textContent += text;
         hasil = Number(angkaPertama) / Number(angkaKedua);
         layar.classList.add("lyr");
